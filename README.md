@@ -46,8 +46,9 @@ Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >>
 
 # SONARQUBE
 Run sonar on continer
+```bash
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
-
+```
 Grab the Public IP Address of your EC2 Instance, 
 Sonarqube works on Port 9000
 ```bash
