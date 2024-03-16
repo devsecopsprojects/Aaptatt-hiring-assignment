@@ -56,11 +56,14 @@ admin
 admin
 change password
 ```
-# SONAR SERVER CONFIGURAITON
-Click on Administration on sonar ui → Security → Users → Click on Tokens and Update Token → Give any name →  click on Generate Token
+## SONAR SERVER CONFIGURAITON
+Click on Administration on sonar ui → <br>
+Security → Users → <br>
+Click on Tokens and Update Token → 
+Give any name →  click on Generate Token → <br>
 copy Token → add sonar token in jenkins under credentials.<br>
 Add docker credentials also in jenkins.<br>
-In the Sonarqube Dashboard add a quality gate also
+In the Sonarqube Dashboard add a quality gate also<br>
 
 ### Create webhook
 Goto administration –> Configuration–>Webhooks-> create webhook
