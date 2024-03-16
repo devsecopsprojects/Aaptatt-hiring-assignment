@@ -60,7 +60,7 @@ change password
 Click on Administration on sonar ui → Security → Users → Click on Tokens and Update Token → Give any name →  click on Generate Token
 
 copy Token → add sonar token in jenkins under credentials.
-Add docker credentials also in jenkins.
+Add docker credentials also in jenkins.<br>
 In the Sonarqube Dashboard add a quality gate also
 
 Goto administration –> Configuration–>Webhooks-> create webhook
