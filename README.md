@@ -49,9 +49,8 @@ Run sonar on continer
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
 Grab the Public IP Address of your EC2 Instance, 
-Sonarqube works on Port 9000, 
-
-http://<Public IP>:9000
+Sonarqube works on Port 9000<br>
+http://Public-IP:9000
 admin
 admin
 change password
