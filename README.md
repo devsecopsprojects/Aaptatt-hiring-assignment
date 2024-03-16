@@ -9,6 +9,9 @@ Install jekins and java [FROM HERE](https://www.jenkins.io/doc/book/installing/l
 ```bash
 mvn package
 ```
+# SECOND SERVER
+#### Configure tomcat with the help of this [document](https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04)
+## Note: Provide correct PATH of java while creating tomcat service.
 ### 2. Installed below plugins
 
 Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >> Install bellow Plugins
