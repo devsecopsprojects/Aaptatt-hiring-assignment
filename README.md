@@ -189,5 +189,11 @@ server {
 
         }
 }
+```
+#### Test the configuration and Reload nginx
+```bash
+sudo nginx -t
+sudo nginx -s reload
+```
 
 
