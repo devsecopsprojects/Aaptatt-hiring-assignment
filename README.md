@@ -65,12 +65,12 @@ copy Token → add sonar token in jenkins under credentials.<br>
 Add docker credentials also in jenkins.<br>
 In the Sonarqube Dashboard add a quality gate also<br>
 
-### Create webhook
-Goto administration –> Configuration–>Webhooks-> create webhook
-
-#in url section of quality gate
-<http://jenkins-public-ip:8080>/sonarqube-webhook/
-  
+### SONAR QUALITYGATE PROFILE
+#### Create Project
+#### Goto administration –> Configuration–>Webhooks-> create webhook
+#### In url section of quality gate
+#### http://jenkins-public-ip:8080/sonarqube-webhook/
+ 
 ## Goto Jenkins Tools section configure tools
 1. click on add jdk >> jdk11 >> jdk-11.8.0
 2. click on add maven >> maven3 > MAVEN 3.8.0
@@ -81,7 +81,7 @@ Goto administration –> Configuration–>Webhooks-> create webhook
 1. Docker: To push image to dockerhub
 2. tomcat: To deploy app on tomcat server
 
-## Dashboard → Manage Jenkins → System
+## Jenkins Dashboard → Manage Jenkins → System
 
 Click on add sonarQube installations
 
@@ -91,7 +91,7 @@ http://public-ip:9000
 attach sonar-token
 save
 
-## Create a pipeline project with name aaptatt
+# Create a pipeline project with name aaptatt
 
 ### General section: No. of builds to keep 2
 
@@ -105,7 +105,7 @@ Under pipeline section: add pipeline script
 
 Build
 
-Pipeline Script:
+# Pipeline Script:
 ```bash
 pipeline {
     agent any
@@ -178,11 +178,15 @@ pipeline {
     }
 }
 ```
+# NGINX SETUP
+
+## Install nginx
 ## Configure Domain yourname.xyz
 ## Create A Record with tomcat public IP.
 ## Create CNAME Record for www.yourname.xyz
-## Install nginx
-## Configure Reverse proxy 
+
+# Configure Reverse proxy 
+
 ```bash
 cd /etc/nginx/conf.d
 sudo vi yourname.xyz.conf
@@ -199,7 +203,9 @@ server {
         }
 }
 ```
+
 #### Test the configuration and Reload nginx
+
 ```bash
 sudo nginx -t
 sudo nginx -s reload
