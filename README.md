@@ -151,13 +151,7 @@ pipeline {
                 sh "trivy fs . > trivyfs.txt"
             }
         }
-        stage('Code-Build') {
-            steps {
-               sh "mvn clean install"
-            }
-        }
-        
-        stage('Docker Build and Push') {
+         stage('Docker Build and Push') {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
@@ -167,7 +161,7 @@ pipeline {
                }
             }
         }
-        stage("TRIVY"){
+        stage("TRIVY IMAGE SCAN"){
             steps{
                 sh "trivy image devsecopsprojects/aaptatt:latest > trivyimage.txt" 
             }
