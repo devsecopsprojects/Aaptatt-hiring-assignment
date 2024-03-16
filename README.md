@@ -49,12 +49,13 @@ Run sonar on continer
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
 Grab the Public IP Address of your EC2 Instance, 
-Sonarqube works on Port 9000<br>
+Sonarqube works on Port 9000
+```bash
 http://Public-IP:9000
 admin
 admin
 change password
-
+```
 Click on Administration on sonar ui → Security → Users → Click on Tokens and Update Token → Give any name →  click on Generate Token
 
 copy Token → add sonar token in jenkins under credentials.
