@@ -89,7 +89,7 @@ http://public-ip:9000
 attach sonar-token
 save
 
-# Create a pipeline with name project1
+# Create a pipeline with name aaptatt
 
 General section: No. of builds to keep 2
 
@@ -110,34 +110,36 @@ pipeline {
     }
 
     stages {
+	 stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
         stage('git-checkout') {
             steps {
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tirucloud/Petclinic.git'
+                git branch: 'main', url: 'https://github.com/devsecopsprojects/aaptatt.git'
             }
         }
 
         stage('Code-Compile') {
             steps {
-               sh "mvn clean compile"
+               sh "mvn clean package"
             }
         }
         stage('Sonar Analysis') {
             steps {
                withSonarQubeEnv('sonar-server'){
-                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=petclinic \
+                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=aaptatt \
                    -Dsonar.java.binaries=. \
-                   -Dsonar.projectKey=petclinic '''
+                   -Dsonar.projectKey=aaptatt '''
                }
             }
         }
-
-		stage('TRIVY FS SCAN') {
+	stage('TRIVY FS SCAN') {
             steps {
                 sh "trivy fs . > trivyfs.txt"
             }
         }
-
-
         stage('Code-Build') {
             steps {
                sh "mvn clean install"
@@ -148,26 +150,44 @@ pipeline {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                    sh "docker build -t petclinic ."
-                    sh "docker tag petclinic tirucloud/petclinic:latest"
-                    sh "docker push  tirucloud/petclinic:latest "
+                    sh "docker build -t devsecopsprojects/aaptatt:latest ."
+                    sh "docker push  devsecopsprojects/aaptatt:latest "
                  }
                }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image tirucloud/petclinic:latest > trivyimage.txt" 
+                sh "trivy image devsecopsprojects/aaptatt:latest > trivyimage.txt" 
             }
         }
          stage("Deploy To Tomcat"){
             steps{
-                sh "cp  /var/lib/jenkins/workspace/PETSHOP/target/petclinic.war /opt/apache-tomcat-9.0.65/webapps/ "
+                deploy adapters: [tomcat8(credentialsId: '59787285-2018-4b2e-8025-4f274776546a', path: '', url: 'http://18.233.66.203:8080/')], contextPath: null, onFailure: false, war: 'target/*.war'
             }
         }
-
-
     }
 }
 ```
+## Configure Domain yourname.xyz
+## Create A Record with tomcat public IP.
+## Create CNAME Record for www.yourname.xyz
+## Install nginx
+## Configure Reverse proxy 
+```bash
+cd /etc/nginx/conf.d
+sudo vi yourname.xyz.conf
+server {
+        server_name yourname.xyz www.yourname.xyz;
+        location / {
+                proxy_pass http://127.0.0.1:8080/;
+		proxy_http_version 1.1;
+    		proxy_set_header Upgrade $http_upgrade;
+    		proxy_set_header Connection 'upgrade';
+    		proxy_set_header Host $host;
+    		proxy_cache_bypass $http_upgrade;
+
+        }
+}
+
 
