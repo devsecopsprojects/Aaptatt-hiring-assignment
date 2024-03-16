@@ -1,7 +1,6 @@
-# Sample spark-java-war-example
+# SAMPLE SPARK JAVA APPLICATION
 ### Build war with maven and sparkjava framework
-
-Steps:
+# Steps:
 #### Launched 2 ec2 ubuntu servers of t2.medium
 # FIRST SERVER
 ### 1. Install jdk11, maven3, docker, jenkins and Trivy
