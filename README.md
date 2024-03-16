@@ -45,7 +45,7 @@ Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >>
 #### Login again
 
 # SONARQUBE
-Run sonar on continer
+Run sonar on container
 ```bash
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 ```
@@ -57,17 +57,17 @@ admin
 admin
 change password
 ```
+# SONAR SERVER CONFIGURAITON
 Click on Administration on sonar ui → Security → Users → Click on Tokens and Update Token → Give any name →  click on Generate Token
-
-copy Token → add sonar token in jenkins under credentials.
+copy Token → add sonar token in jenkins under credentials.<br>
 Add docker credentials also in jenkins.<br>
 In the Sonarqube Dashboard add a quality gate also
 
+### Create webhook
 Goto administration –> Configuration–>Webhooks-> create webhook
 
 #in url section of quality gate
 <http://jenkins-public-ip:8080>/sonarqube-webhook/
-
   
 ## Goto Jenkins Tools section configure tools
 1. click on add jdk >> jdk11 >> jdk-11.8.0
@@ -91,8 +91,14 @@ save
 
 # Create a pipeline with name aaptatt
 
-General section: No. of builds to keep 2
+### General section: No. of builds to keep 2
 
+### Chose Buid trigger as **webhook trigger git scm polling**
+### Add webhook under git hub repository settings add webhook
+### Give Jenkins URL under webhook section of github.
+```bash
+http://jenkins-URL:8080/github-webook
+```
 Under pipeline section: add pipeline script
 
 Build
