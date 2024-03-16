@@ -5,7 +5,7 @@ Steps:
 ### Launched 2 ec2 ubuntu servers of t2.medium
 ### FIRST SERVER
 ### 1. Install jdk11, maven3, docker, jenkins and Trivy
-jekins and java installation [HERE](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
+Install jekins and java [FROM HERE](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
 #### Cloned the repository on jenkins machine
 ```sh
 mvn package
