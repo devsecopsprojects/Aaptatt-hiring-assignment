@@ -1,5 +1,5 @@
 # Sample spark-java-war-example
-Build war with maven and sparkjava framework
+# Build war with maven and sparkjava framework
 
 Steps:
 ### Launched 2 ec2 ubuntu servers of t2.medium
@@ -7,13 +7,13 @@ Steps:
 ### 1. Install jdk11, maven3, docker, jenkins and Trivy
 Install jekins and java [FROM HERE](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
 #### Cloned the repository on jenkins machine
-```sh
+```bash
 mvn package
 ```
 ### 2. Installed below plugins
 
 Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >> Install bellow Plugins
-'''bash
+```bash
    a. Deploy to container
    b. Sonarqube scanner
    c. Maven intergration
