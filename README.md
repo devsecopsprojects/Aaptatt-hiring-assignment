@@ -13,7 +13,7 @@ mvn package
 ### 2. Installed below plugins
 
 Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >> Install bellow Plugins
-
+'''bash
    a. Deploy to container
    b. Sonarqube scanner
    c. Maven intergration
@@ -21,7 +21,7 @@ Click on Jenkins Dash board >> Manage Jenkins >> Plugins >> Available Plugins >>
    d. Docker
    e. Docker commons
    f. Docker Pipeline
-
+```
 ## 3. Configure Jenkins server:
    
 #### click on "Install suggested plugins"
