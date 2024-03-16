@@ -3,9 +3,9 @@ Build war with maven and sparkjava framework
 
 Steps:
 
-### Launched 2 ec2 ubuntu servers of t2.medium
-### Configured jenkins on first server, tomcat on second server
-Download a fresh [Tomcat 8 distribution](https://tomcat.apache.org/download-80.cgi)
+#### Launched 2 ec2 ubuntu servers of t2.medium
+#### Configured jenkins on first server, tomcat on second server
+#### Download a fresh [Tomcat 8 distribution](https://tomcat.apache.org/download-80.cgi)
 Clone this repository to your local machine
 Run mvn package
 Copy the generated `sparkjava-hello-world-1.0.war` to the Tomcat `webapps` folder
