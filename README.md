@@ -89,7 +89,7 @@ http://public-ip:9000
 attach sonar-token
 save
 
-# Create a pipeline with name aaptatt
+## Create a pipeline project with name aaptatt
 
 ### General section: No. of builds to keep 2
 
@@ -167,9 +167,10 @@ pipeline {
                 sh "trivy image devsecopsprojects/aaptatt:latest > trivyimage.txt" 
             }
         }
-         stage("Deploy To Tomcat"){
+         stage("Deploy To Tomcat Container"){
             steps{
-                deploy adapters: [tomcat8(credentialsId: '59787285-2018-4b2e-8025-4f274776546a', path: '', url: 'http://18.233.66.203:8080/')], contextPath: null, onFailure: false, war: 'target/*.war'
+                deploy adapters: [tomcat8(credentialsId: '59787285-2018-4b2e-8025-4f274776546a', path: '', url: 'http://18.233.66.203:8080/')], \
+		contextPath: null, onFailure: false, war: 'target/*.war'
             }
         }
     }
