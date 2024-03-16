@@ -177,10 +177,10 @@ pipeline {
 ```
 # NGINX SETUP
 
-## Install nginx
-## Configure Domain yourname.xyz
-## Create A Record with tomcat public IP.
-## Create CNAME Record for www.yourname.xyz
+### Install nginx
+### Configure Domain yourname.xyz
+### Create A Record with tomcat public IP.
+### Create CNAME Record for www.yourname.xyz
 
 # Configure Reverse proxy 
 
