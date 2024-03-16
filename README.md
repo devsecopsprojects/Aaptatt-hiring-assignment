@@ -85,7 +85,7 @@ Click on add sonarQube installations
 
 sonar-server
 
-http:<public-ip>:9000
+http://public-ip:9000
 attach sonar-token
 save
 
