@@ -97,3 +97,77 @@ Under pipeline section: add pipeline script
 
 Build
 
+Pipeline Script:
+```bash
+pipeline {
+    agent any
+    tools{
+        jdk 'jdk11'
+        maven 'maven3'
+    }
+    environment{
+        SCANNER_HOME= tool 'sonar-scanner'
+    }
+
+    stages {
+        stage('git-checkout') {
+            steps {
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tirucloud/Petclinic.git'
+            }
+        }
+
+        stage('Code-Compile') {
+            steps {
+               sh "mvn clean compile"
+            }
+        }
+        stage('Sonar Analysis') {
+            steps {
+               withSonarQubeEnv('sonar-server'){
+                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=petclinic \
+                   -Dsonar.java.binaries=. \
+                   -Dsonar.projectKey=petclinic '''
+               }
+            }
+        }
+
+		stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+            }
+        }
+
+
+        stage('Code-Build') {
+            steps {
+               sh "mvn clean install"
+            }
+        }
+        
+        stage('Docker Build and Push') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
+                    sh "docker build -t petclinic ."
+                    sh "docker tag petclinic tirucloud/petclinic:latest"
+                    sh "docker push  tirucloud/petclinic:latest "
+                 }
+               }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image tirucloud/petclinic:latest > trivyimage.txt" 
+            }
+        }
+         stage("Deploy To Tomcat"){
+            steps{
+                sh "cp  /var/lib/jenkins/workspace/PETSHOP/target/petclinic.war /opt/apache-tomcat-9.0.65/webapps/ "
+            }
+        }
+
+
+    }
+}
+```
+
